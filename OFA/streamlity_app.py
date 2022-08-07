@@ -12,10 +12,15 @@ from fairseq import checkpoint_utils
 from utils.eval_utils import eval_step
 from tasks.mm_tasks.caption import CaptionTask
 from torchvision import transforms
+import wget
+
 
 #############################################################################################
 @st.cache(suppress_st_warning=True , allow_output_mutation=True)
 def load_model():
+    
+    filename = wget.download('https://ofa-silicon.oss-us-west-1.aliyuncs.com/checkpoints/caption_large_best_clean.pt', out="checkpoints/caption.pt")
+    
     # Register caption task
     tasks.register_task('caption',CaptionTask)
 
